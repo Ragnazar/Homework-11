@@ -1,50 +1,50 @@
 import java.util.Objects;
 
 public class Book {
-    private final String bookTitle;
-    private final String author;
+    private final String title;
+    private final Author author;
     private int yearPublishing;
-    private int id;
 
-    public Book(String bookName, Author author, int yearPublishing) {
-        this.author = author.toString();
-        this.bookTitle = bookName;
+
+
+
+    public Book(String title, Author author, int yearPublishing) {
+        this.author = author;
+        this.title = title;
         this.yearPublishing = yearPublishing;
-        id++;
     }
 
-  /*  private String getAuthor() {
-        return author.toString();
-    }*/
-
-    private String getBookTitle() {
-        return bookTitle;
+    public Author getAuthor() {
+        return author;
     }
 
-    private int getYearPublishing() {
+    public String getTitle() {
+        return title;
+    }
+
+    public int getYearPublishing() {
         return yearPublishing;
     }
 
-    void setYearPublishing(int yearPublishing) {
+    public void setYearPublishing(int yearPublishing) {
         this.yearPublishing = yearPublishing;
     }
-
     @Override
     public boolean equals(Object other) {
         if (this.getClass() != other.getClass()) {
             return false;
         }
         Book c2 = (Book) other;
-        return Objects.equals(id, c2.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+        return Objects.equals(title, c2.title);
     }
 
     @Override
     public String toString() {
-        return author + hashCode() + " | "+ getBookTitle() + " | " + getYearPublishing() + " |";
+        return author.toString() + " | "+ getTitle() + " | " + getYearPublishing() + " |";
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(author.toString(), title);
     }
 }

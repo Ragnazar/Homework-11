@@ -1,25 +1,31 @@
 import java.util.Objects;
 
 public class Author {
-    private final String authorName;
-    private final String authorSurname;
-    private static int count = 0;
-    private final int id;
+    private final String name;
+    private final String surname;
 
-    public Author(String authorName, String authorSurname) {
-        this.authorName = authorName;
-        this.authorSurname = authorSurname;
-        id = count++;
+    public Author(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
     }
 
-    public String getAuthorSurname() {
-        return authorSurname;
+    public String getSurname() {
+        return surname;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public String getName() {
+        return name;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname);
+    }
+
+    @Override
+    public  String toString() {
+        return " | " + getName()  + " " + getSurname() ;
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -27,18 +33,7 @@ public class Author {
             return false;
         }
         Author c2 = (Author) other;
-        return Objects.equals(id, c2.id);
+        return Objects.equals(toString(), c2.toString());
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public  String toString() {
-        return hashCode() + " | " + getAuthorName()  + " " + getAuthorSurname() + " | ";
-    }
-
 
 }
